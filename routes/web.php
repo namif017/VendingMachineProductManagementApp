@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\ProductsController::class, 'showProducts']);
+Route::get('/', [App\Http\Controllers\ProductsController::class, 'showAllProducts']);
 
-Route::get('/products', [App\Http\Controllers\ProductsController::class, 'showProducts'])->name('products');
+Route::get('/products', [App\Http\Controllers\ProductsController::class, 'showAllProducts'])->name('products');
+Route::post('/products', [App\Http\Controllers\ProductsController::class, 'showSearchedProducts'])->name('search');
