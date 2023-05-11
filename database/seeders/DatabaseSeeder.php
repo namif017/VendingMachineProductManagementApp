@@ -7,6 +7,10 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+    private const SEEDERS = [
+        CompaniesTableSeeder::class,　
+    ];
+
     /**
      * Seed the application's database.
      *
@@ -20,5 +24,9 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        foreach(self::SEEDERS as $seeder) {
+            $this->call($seeder);
+        }
     }
 }
