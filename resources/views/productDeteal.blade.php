@@ -3,7 +3,7 @@
 @section('title', '商品情報詳細画面')
 
 @section('content')
-    <table>
+    <table class="product-deteal-table">
         <tbody>
             <tr>
                 <th>id</th>

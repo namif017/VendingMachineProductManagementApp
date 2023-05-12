@@ -3,14 +3,14 @@
 @section('title', '商品一覧画面')
 
 @section('content')
-    <form action="{{ route('searchProducts') }}" method="post">
+    <form action="{{ route('searchProducts') }}" method="post" class="search-form">
         @csrf
         <div class="form-group">
             <label for="textProductName">商品名</label>
-            <input type="text" class="form-control" name="product_name_key" id="textProductName" placeholder="メーカー名">
+            <input type="text" class="form-control" name="product_name_key" id="textProductName" placeholder="商品名">
         </div>
         <div class="form-group">
-            <label for="selectCompany">メーカー名</label>
+            <label for="selectCompany">メーカー</label>
             <select class="form-control" name="company_id" id="selectCompany">
                 <option value="all">すべて</option>
                 @foreach ($companies as $company)
@@ -29,7 +29,9 @@
                 <th>商品名</th>
                 <th>価格</th>
                 <th>在庫数</th>
-                <th>メーカー名</th>
+                <th>メーカー</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>

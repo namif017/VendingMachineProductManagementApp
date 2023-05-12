@@ -3,7 +3,7 @@
 @section('title', '商品情報登録画面')
 
 @section('content')
-    <form action="{{ route('registProduct') }}" method="post">
+    <form action="{{ route('registProduct') }}" method="post" class="product-data-form">
     @csrf
         <div class="form-group">
             <label for="txtProductName">商品名</label>
@@ -23,28 +23,28 @@
                     <p>{{ $errors->first('company_id') }}</p>
                 @endif
         </div>
-        <div　class="form-group">
+        <div class="form-group">
             <label for="numPlice">価格</label>
             <input type="number" name="price" id="numPlice" placeholder="価格" value="{{ old('price') }}">
                 @if($errors->has('price'))
                     <p>{{ $errors->first('price') }}</p>
                 @endif
         </div>
-        <div　class="form-group">
+        <div class="form-group">
             <label for="numStock">在庫数</label>
             <input type="number" name="stock" id="numStock" placeholder="在庫数" value="{{ old('stock') }}">
                 @if($errors->has('stock'))
                     <p>{{ $errors->first('stock') }}</p>
                 @endif
         </div>
-        <div　class="form-group">
+        <div class="form-group">
             <label for="areaComment">コメント</label>
             <textarea name="comment" id="areaComment" placeholder="コメント">{{ old('comment') }}</textarea>
                 @if($errors->has('comment'))
                     <p>{{ $errors->first('comment') }}</p>
                 @endif
         </div>
-        <div　class="form-group">
+        <div class="form-group">
             <label for="fileImg">商品画像</label>
             <input type="file" accept="image/*" name="img" id="fileImg" value="{{ old('img') }}">
                 @if($errors->has('img'))

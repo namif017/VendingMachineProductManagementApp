@@ -1,0 +1,76 @@
+.row {
+    padding: 20px;
+
+    display:flex;
+    flex-flow: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+h1 {
+    font-size: 32px;
+    margin: 20px 0;
+}
+
+th,td {
+    border: solid 1px;
+    padding: 0.2rem 10px;
+}
+ 
+table {
+    border-collapse:  collapse;
+}
+
+button {
+	display: block;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	font-weight: bold;
+	border: 2px solid gray;
+    border-radius: 0.2rem;
+	background: gray;
+	color: #fff;
+	transition: 0.1s;
+}
+
+button:hover {
+	color: gray;
+	background: #fff;
+}
+
+.search-form {
+    display:flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.product-data-form {
+    display:flex;
+    flex-flow: column;
+    align-items: flex-start;
+    gap: 6px 4px;
+}
+
+.product-data-form > .form-group {
+    display: flex;
+    align-items: flex-start;
+}
+
+.product-data-form > .form-group > label {
+    display: inline-block;
+    width: 100px;
+}
+
+.product-data-form > .form-group > *:not(label) {
+    box-sizing: border-box;
+    width: 250px;
+}
+
+.product-data-form > .form-group > textarea {
+    height: 150px;
+}
+
+.product-deteal-table th {
+    width: 100px;
+}
