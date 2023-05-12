@@ -3,7 +3,7 @@
 @section('title', '商品情報編集画面')
 
 @section('content')
-<form action="{{ route('submitEditProduct', ['id' => $product->id]) }}" method="post" class="product-data-form">
+<form action="{{ route('submitEditProduct', ['id' => $product->id]) }}" method="post" class="product-data-form" enctype="multipart/form-data">
     @csrf
         <div class="form-group">
             <label>商品情報ID</label>

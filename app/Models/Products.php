@@ -40,6 +40,16 @@ class Products extends Model
     }
 
     public function registProduct($data) {
+        $img = $data->img ?? '';
+
+        if($img != '') {
+            $img = $data->file('img')->store('public/imgs');
+            $img = substr($img, 7);
+            $img = "storage/{$img}";
+        }
+
+        $data->img = $img;
+
         $this->manipulateDB(function() use($data){
             $now = Carbon::now();
             DB::table('products')
@@ -49,7 +59,7 @@ class Products extends Model
                 'price' => $data->price,
                 'stock' => $data->stock,
                 'comment' => $data->comment ?? '',
-                'img_path' => $data->img ?? '',
+                'img_path' => $data->img,
                 'created_at' => $now,
                 'updated_at' => $now,
             ]);
@@ -57,6 +67,27 @@ class Products extends Model
     }
 
     public function editProduct($id, $data) {
+        $oldImgPath = DB::table('products')
+            ->where('id', $id)
+            ->first()
+            ->img_path;
+
+        $img = $oldImgPath;
+        
+        if($data->file('img')) {
+            if($oldImgPath == '')  {
+                $img = $data->file('img')->store('public/imgs');
+                $img = substr($img, 7);
+                $img = "storage/{$img}";
+            }
+            else {
+                $img_ = substr($img, 7);
+                $data->file('img')->storeAs('public', $img_);
+            }
+        }
+
+        $data->img = $img;
+        
         $this->manipulateDB((function() use($id, $data) {
             $now = Carbon::now();
             DB::table('products')

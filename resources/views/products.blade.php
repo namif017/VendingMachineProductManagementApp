@@ -38,7 +38,11 @@
             @foreach ($products as $product)
                 <tr>
                     <td>{{ $product->id }}</td>
-                    <td></td>
+                    <td>
+                        @if($product->img_path != '')<img src="{{ asset($product->img_path) }}" class='products_img'>
+                        @else NOIMAGE
+                        @endif
+                    </td>
                     <td>{{ $product->product_name }}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->stock }}</td>

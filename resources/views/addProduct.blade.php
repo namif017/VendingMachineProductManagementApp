@@ -3,7 +3,7 @@
 @section('title', '商品情報登録画面')
 
 @section('content')
-    <form action="{{ route('registProduct') }}" method="post" class="product-data-form">
+    <form action="{{ route('registProduct') }}" method="post" class="product-data-form" enctype="multipart/form-data">
     @csrf
         <div class="form-group">
             <label for="txtProductName">商品名</label>

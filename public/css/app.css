@@ -74,3 +74,7 @@ button:hover {
 .product-deteal-table th {
     width: 100px;
 }
+
+.products_img {
+    width: 200px;
+}
