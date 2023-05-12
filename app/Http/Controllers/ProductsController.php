@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Products;
+use LDAP\Result;
 
 class ProductsController extends Controller
 {
@@ -13,6 +14,13 @@ class ProductsController extends Controller
 
     public function showSearchedProducts(Request $request) {
         return $this->showProducts($request->input('product_name_key'), $request->input('company_id'));
+    }
+
+    public function deleteProduct(Request $request) {
+        $id = $request->input('id');
+        $model = new Products();
+        $model->deleteProduct($id);
+        return redirect(route('products'));
     }
 
     function showProducts($product_name_key, $cpmpany_id) {

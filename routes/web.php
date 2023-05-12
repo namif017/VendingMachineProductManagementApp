@@ -17,6 +17,7 @@ Route::get('/', [App\Http\Controllers\ProductsController::class, 'showAllProduct
 
 Route::get('/products', [App\Http\Controllers\ProductsController::class, 'showAllProducts'])->name('products');
 Route::post('/products', [App\Http\Controllers\ProductsController::class, 'showSearchedProducts'])->name('searchProducts');
+Route::delete('/products', [App\Http\Controllers\ProductsController::class, 'deleteProduct'])->name('deleteProduct');
 
 Route::get('/newProdct', [App\Http\Controllers\AddProductController::class, 'showAddProduct'])->name('addProduct');
 Route::post('/newProdct', [App\Http\Controllers\AddProductController::class, 'registProduct'])->name('registProduct');

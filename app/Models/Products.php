@@ -73,6 +73,14 @@ class Products extends Model
         }));
     }
 
+    function deleteProduct($id) {
+        $this->manipulateDB(function() use($id) {
+            DB::table('products')
+            ->where('id', $id)
+            ->delete();
+        });
+    }
+
     function manipulateDB($func) {
         DB::beginTransaction();
 

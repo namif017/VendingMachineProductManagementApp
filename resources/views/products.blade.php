@@ -42,9 +42,19 @@
                     <td>{{ $product->stock }}</td>
                     <td>{{ $product->company_name }}</td>
                     <td><button type="button" onclick="window.location.href='{{ route('productDeteal', ['id' => $product->id]) }}'">詳細</button></td>
-                    <td></td>
+                    <td>
+                        <form action="{{ route('deleteProduct', ['id' => $product->id]) }}" method="post" onSubmit="return checkDeleteProduct()">
+                        @csrf
+                        @method('delete')
+                            <button type="submit">削除</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('/js/checkDeleteProduct.js') }}"></script>
 @endsection
