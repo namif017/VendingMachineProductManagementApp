@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class ProductDetealController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function showProductDeteal(Request $request) {
         $id = $request->input('id');
 

@@ -8,6 +8,10 @@ use App\Http\Requests\ProductRequest;
 
 class AddProductController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function showAddProduct() {
         $model = new Products();
         $companies = $model->getCompanies();

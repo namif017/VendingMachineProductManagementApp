@@ -26,3 +26,11 @@ Route::get('/prodctDeteal', [App\Http\Controllers\ProductDetealController::class
 
 Route::get('/editProdct', [App\Http\Controllers\EditProductController::class, 'showEditProduct'])->name('editProduct');
 Route::post('/editProdct', [App\Http\Controllers\EditProductController::class, 'editProduct'])->name('submitEditProduct');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
