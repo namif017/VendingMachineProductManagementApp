@@ -20,3 +20,8 @@ Route::post('/products', [App\Http\Controllers\ProductsController::class, 'showS
 
 Route::get('/newProdct', [App\Http\Controllers\AddProductController::class, 'showAddProduct'])->name('addProduct');
 Route::post('/newProdct', [App\Http\Controllers\AddProductController::class, 'registProduct'])->name('registProduct');
+
+Route::get('/prodctDeteal', [App\Http\Controllers\ProductDetealController::class, 'showProductDeteal'])->name('productDeteal');
+
+Route::get('/editProdct', [App\Http\Controllers\EditProductController::class, 'showEditProduct'])->name('editProduct');
+Route::post('/editProdct', [App\Http\Controllers\EditProductController::class, 'editProduct'])->name('submitEditProduct');
