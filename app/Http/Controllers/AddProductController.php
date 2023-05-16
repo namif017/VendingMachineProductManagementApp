@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Commons\ManipulateDB;
 use App\Models\Products;
 use App\Http\Requests\ProductRequest;
 
@@ -12,15 +12,14 @@ class AddProductController extends Controller
         $this->middleware('auth');
     }
 
-    public function showAddProduct() {
-        $model = new Products();
-        $companies = $model->getCompanies();
+    public static function showAddProduct() {
+        $companies = Products::getCompanies();
         return view('addProduct',['companies' => $companies]);
     }
 
-    public function registProduct(ProductRequest $request) {
-        $model = new Products();
-        $model->registProduct($request);
+    public static function registProduct(ProductRequest $request) {
+        $func = Products::registProduct($request);
+        ManipulateDB::manipulateDB($func);
 
         return redirect(route('addProduct'));
     }

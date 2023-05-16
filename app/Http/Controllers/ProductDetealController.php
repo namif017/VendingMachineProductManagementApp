@@ -11,11 +11,10 @@ class ProductDetealController extends Controller
         $this->middleware('auth');
     }
 
-    public function showProductDeteal(Request $request) {
+    public static function showProductDeteal(Request $request) {
         $id = $request->input('id');
 
-        $model = new Products();
-        $product = $model->getProductDeteal($id);
+        $product = Products::getProductDeteal($id);
         return view('productDeteal', ['product' => $product]);
     }
 }

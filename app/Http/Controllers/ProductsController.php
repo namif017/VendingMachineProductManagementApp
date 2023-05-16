@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Commons\ManipulateDB;
 use Illuminate\Http\Request;
 use App\Models\Products;
-use LDAP\Result;
 
 class ProductsController extends Controller
 {
@@ -12,25 +12,26 @@ class ProductsController extends Controller
         $this->middleware('auth');
     }
     
-    public function showAllProducts() {
-        return $this->showProducts('', 'all');
+    public static function showAllProducts() {
+        return ProductsController::showProducts('', 'all');
     }
 
-    public function showSearchedProducts(Request $request) {
-        return $this->showProducts($request->input('product_name_key'), $request->input('company_id'));
+    public static function showSearchedProducts(Request $request) {
+        return ProductsController::showProducts($request->input('product_name_key'), $request->input('company_id'));
     }
 
-    public function deleteProduct(Request $request) {
+    public static function deleteProduct(Request $request) {
         $id = $request->input('id');
-        $model = new Products();
-        $model->deleteProduct($id);
+
+        $func = Products::deleteProduct($id);
+        ManipulateDB::manipulateDB($func);
+
         return redirect(route('products'));
     }
 
-    function showProducts($product_name_key, $cpmpany_id) {
-        $model = new Products();
-        $companies = $model->getCompanies();
-        $products = $model->getProducts($product_name_key, $cpmpany_id);
+    static function showProducts($product_name_key, $cpmpany_id) {
+        $companies = Products::getCompanies();
+        $products = Products::getProducts($product_name_key, $cpmpany_id);
         return view('products', ['companies' => $companies, 'products' => $products]);
     }
 }

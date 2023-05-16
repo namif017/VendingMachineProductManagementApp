@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Commons\ManipulateDB;
 use App\Http\Requests\ProductRequest;
 use App\Models\Products;
 use Illuminate\Http\Request;
@@ -12,20 +13,19 @@ class EditProductController extends Controller
         $this->middleware('auth');
     }
 
-    public function showEditProduct(Request $request) {
+    public static function showEditProduct(Request $request) {
         $id = $request->input('id');
 
-        $model = new Products();
-        $companies = $model->getCompanies();
-        $product = $model->getProductDeteal($id);
+        $companies = Products::getCompanies();
+        $product = Products::getProductDeteal($id);
         return view('editProduct', ['companies' => $companies, 'product' => $product]);
     }
 
-    public function editProduct(ProductRequest $request) {
+    public static function editProduct(ProductRequest $request) {
         $id = $request->input('id');
 
-        $model = new Products();
-        $model->editProduct($id, $request);
+        $func = Products::editProduct($id, $request);
+        ManipulateDB::manipulateDB(($func));
 
         return redirect(route('editProduct', ['id' => $id]));
     }
