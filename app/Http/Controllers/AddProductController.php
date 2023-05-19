@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Commons\ManipulateDB;
 use App\Models\Products;
 use App\Http\Requests\ProductRequest;
 
@@ -18,8 +17,13 @@ class AddProductController extends Controller
     }
 
     public static function registProduct(ProductRequest $request) {
-        $func = Products::registProduct($request);
-        ManipulateDB::manipulateDB($func);
+        try {
+            Products::registProduct($request);
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollback();
+            return back();
+        }
 
         return redirect(route('addProduct'));
     }

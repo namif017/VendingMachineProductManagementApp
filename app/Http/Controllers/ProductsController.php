@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Commons\ManipulateDB;
 use Illuminate\Http\Request;
 use App\Models\Products;
 
@@ -23,8 +22,13 @@ class ProductsController extends Controller
     public static function deleteProduct(Request $request) {
         $id = $request->input('id');
 
-        $func = Products::deleteProduct($id);
-        ManipulateDB::manipulateDB($func);
+        try {
+            Products::deleteProduct($id);
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollback();
+            return back();
+        }
 
         return redirect(route('products'));
     }

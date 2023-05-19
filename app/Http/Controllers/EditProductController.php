@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Commons\ManipulateDB;
 use App\Http\Requests\ProductRequest;
 use App\Models\Products;
 use Illuminate\Http\Request;
@@ -24,8 +23,15 @@ class EditProductController extends Controller
     public static function editProduct(ProductRequest $request) {
         $id = $request->input('id');
 
-        $func = Products::editProduct($id, $request);
-        ManipulateDB::manipulateDB(($func));
+        DB::beginTransaction();
+
+        try {
+            Products::editProduct($id, $request);
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollback();
+            return back();
+        }
 
         return redirect(route('editProduct', ['id' => $id]));
     }
