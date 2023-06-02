@@ -39,7 +39,7 @@ button:hover {
 	background: #fff;
 }
 
-.search-form {
+#search-form {
     display:flex;
     gap: 4px;
     align-items: center;

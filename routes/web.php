@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ProductsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,11 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\ProductsController::class, 'showAllProducts']);
+Route::get('/', [ProductsController::class, 'showAllProducts']);
 
-Route::get('/products', [App\Http\Controllers\ProductsController::class, 'showAllProducts'])->name('products');
-Route::post('/products', [App\Http\Controllers\ProductsController::class, 'showSearchedProducts'])->name('searchProducts');
-Route::delete('/products', [App\Http\Controllers\ProductsController::class, 'deleteProduct'])->name('deleteProduct');
+Route::get('/products', [ProductsController::class, 'showProducts'])->name('products');
+Route::get('/products/filteredProducts', [ProductsController::class, 'getFilteredProducts'])->name('filteredProducts');
+Route::delete('/products', [ProductsController::class, 'deleteProduct'])->name('deleteProduct');
 
 Route::get('/newProdct', [App\Http\Controllers\AddProductController::class, 'showAddProduct'])->name('addProduct');
 Route::post('/newProdct', [App\Http\Controllers\AddProductController::class, 'registProduct'])->name('registProduct');
@@ -26,10 +28,6 @@ Route::get('/prodctDeteal', [App\Http\Controllers\ProductDetealController::class
 
 Route::get('/editProdct', [App\Http\Controllers\EditProductController::class, 'showEditProduct'])->name('editProduct');
 Route::post('/editProdct', [App\Http\Controllers\EditProductController::class, 'editProduct'])->name('submitEditProduct');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 

@@ -3,8 +3,7 @@
 @section('title', '商品一覧画面')
 
 @section('content')
-    <form action="{{ route('searchProducts') }}" method="post" class="search-form">
-        @csrf
+    <form id="search-form">
         <div class="form-group">
             <label for="textProductName">商品名</label>
             <input type="text" class="form-control" name="product_name_key" id="textProductName" placeholder="商品名">
@@ -18,10 +17,10 @@
                 @endforeach
             </select>
         </div>
-        <button type="submit">検索</button>
+        <button type="button" onclick="getFilteredProducts()">検索</button>
     </form>
     <button type="button" onclick="window.location.href='{{ route('addProduct') }}'">新規登録</button>
-    <table>
+    <table id="tableProducts">
         <thead>
             <tr>
                 <th>id</th>
@@ -35,32 +34,12 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($products as $product)
-                <tr>
-                    <td>{{ $product->id }}</td>
-                    <td>
-                        @if($product->img_path != '')<img src="{{ asset($product->img_path) }}" class='products_img'>
-                        @else NOIMAGE
-                        @endif
-                    </td>
-                    <td>{{ $product->product_name }}</td>
-                    <td>{{ $product->price }}</td>
-                    <td>{{ $product->stock }}</td>
-                    <td>{{ $product->company_name }}</td>
-                    <td><button type="button" onclick="window.location.href='{{ route('productDeteal', ['id' => $product->id]) }}'">詳細</button></td>
-                    <td>
-                        <form action="{{ route('deleteProduct', ['id' => $product->id]) }}" method="post" onSubmit="return checkDeleteProduct()">
-                        @csrf
-                        @method('delete')
-                            <button type="submit">削除</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
         </tbody>
     </table>
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('/js/getFilteredProducts.js') }}"></script>
+    <script src="{{ asset('/js/sortAndShowProducts.js') }}"></script>
     <script src="{{ asset('/js/checkDeleteProduct.js') }}"></script>
 @endsection
