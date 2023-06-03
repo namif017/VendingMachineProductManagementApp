@@ -54,7 +54,7 @@ function sortAndShowProducts() {
                 `<td>${product.price}</td>`,
                 `<td>${product.stock}</td>`,
                 `<td>${product.company_name}</td>`,
-                `<td><button onclick="window.location.href='/prodctDeteal?id=${product.id}'">詳細</button></td>`,
+                `<td><button onclick="window.location.href='./prodctDeteal?id=${product.id}'">詳細</button></td>`,
                 `<td><button onclick="deleteProduct(${product.id})">削除</button></td>`
             )
         );
