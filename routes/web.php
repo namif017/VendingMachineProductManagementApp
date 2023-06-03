@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\AddProductController;
+use App\Http\Controllers\ProductDetealController;
+use App\Http\Controllers\EditProductController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,20 +19,20 @@ use App\Http\Controllers\ProductsController;
 |
 */
 
-Route::get('/', [ProductsController::class, 'showAllProducts']);
+Route::get('/', [ProductsController::class, 'showProducts']);
 
 Route::get('/products', [ProductsController::class, 'showProducts'])->name('products');
 Route::post('/products/filteredProducts', [ProductsController::class, 'getFilteredProducts'])->name('filteredProducts');
 Route::post('/products/deleteProduct', [ProductsController::class, 'deleteProduct'])->name('deleteProduct');
 
-Route::get('/newProdct', [App\Http\Controllers\AddProductController::class, 'showAddProduct'])->name('addProduct');
-Route::post('/newProdct', [App\Http\Controllers\AddProductController::class, 'registProduct'])->name('registProduct');
+Route::get('/newProdct', [AddProductController::class, 'showAddProduct'])->name('addProduct');
+Route::post('/newProdct', [AddProductController::class, 'registProduct'])->name('registProduct');
 
-Route::get('/prodctDeteal', [App\Http\Controllers\ProductDetealController::class, 'showProductDeteal'])->name('productDeteal');
+Route::get('/prodctDeteal', [ProductDetealController::class, 'showProductDeteal'])->name('productDeteal');
 
-Route::get('/editProdct', [App\Http\Controllers\EditProductController::class, 'showEditProduct'])->name('editProduct');
-Route::post('/editProdct', [App\Http\Controllers\EditProductController::class, 'editProduct'])->name('submitEditProduct');
+Route::get('/editProdct', [EditProductController::class, 'showEditProduct'])->name('editProduct');
+Route::post('/editProdct', [EditProductController::class, 'editProduct'])->name('submitEditProduct');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');

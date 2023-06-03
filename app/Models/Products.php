@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Exception;
 
 class Products extends Model
 {
@@ -65,7 +66,7 @@ class Products extends Model
                 'comment' => $data->comment ?? '',
                 'img_path' => $data->img,
                 'created_at' => $now,
-                'updated_at' => $now,
+                'updated_at' => $now
             ]);
     }
 
@@ -109,5 +110,33 @@ class Products extends Model
         DB::table('products')
             ->where('id', $id)
             ->delete();
+    }
+
+    public static function saleProduct($id) {
+        $stock = DB::table('products')
+            ->where('id', $id)
+            ->select('stock')
+            ->first()
+            ->stock;
+        
+        if($stock < 1) throw new Exception("在庫がありません");
+
+        $now = Carbon::now();
+        DB::table('sales')
+            ->insert([
+                'product_id' => $id,
+                'created_at' => $now,
+                'updated_at' => $now
+            ]);
+        
+        $product = DB::table('products')
+            ->where('id', $id);
+        
+        $product->decrement('stock', 1);
+        $product->update([
+                'updated_at' => $now,
+            ]);
+
+        return $product->select('id', 'product_name')->first();
     }
 }
