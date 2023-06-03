@@ -11,7 +11,9 @@ class Products extends Model
     public static function getCompanies() {
         $companies = DB::table('companies')
             ->select('id', 'company_name')
-            ->get();
+            ->get()
+            ->sortBy('company_name');
+
         return $companies;
     }
 

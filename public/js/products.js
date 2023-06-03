@@ -34,6 +34,15 @@ function sortAndShowProducts() {
 
     $tbody.empty();
 
+    const sortKey = $('#selectSortProductsSauce').val();
+    products.sort(function(a, b){
+        if (a[sortKey] > b[sortKey]) return 1;
+        if (a[sortKey] < b[sortKey]) return -1;
+
+        if (a.id > b.id) return 1;
+        if (a.id < b.id) return -1;
+    });
+
     for(const i in products) {
         const product = products[i];
 

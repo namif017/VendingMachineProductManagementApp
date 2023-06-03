@@ -31,6 +31,16 @@
         </div>
         <button type="button" onclick="getFilteredProducts()">検索</button>
     </form>
+    <div>
+        <label for="selectSortProductsSauce">並べ替え</label>
+        <select id="selectSortProductsSauce" onchange="sortAndShowProducts()">
+            <option value="id">id</option>
+            <option value="product_name">商品名</option>
+            <option value="price">価格</option>
+            <option value="stock">在庫数</option>
+            <option value="company_name">メーカー</option>
+        </select>
+    </div>
     <button type="button" onclick="window.location.href='{{ route('addProduct') }}'">新規登録</button>
     <table id="tableProducts">
         <thead>
