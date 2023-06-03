@@ -4,13 +4,21 @@ getFilteredProducts();
 function getFilteredProducts() {
     const product_name_key = $('#textProductName').val() ?? '';
     const company_id = $('#selectCompany').val();
+    const price_limit_lower = $('#numPriceLimitLower').val() ?? '';
+    const price_limit_upper = $('#numPriceLimitUpper').val() ?? '';
+    const stock_limit_lower = $('#numStockLimitLower').val() ?? '';
+    const stock_limit_upper = $('#numStockLimitUpper').val() ?? '';
 
     $.ajax({
         url: "products/filteredProducts",
         method: "POST",
         data: {
             product_name_key : product_name_key,
-            company_id : company_id
+            company_id : company_id,
+            price_limit_lower : price_limit_lower,
+            price_limit_upper : price_limit_upper,
+            stock_limit_lower : stock_limit_lower,
+            stock_limit_upper : stock_limit_upper
         },
         dataType: "json",
     }).done(function(res) {

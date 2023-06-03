@@ -17,6 +17,18 @@
                 @endforeach
             </select>
         </div>
+        <div class="form-group">
+            <label>価格</label>
+            <input type="number" class="form-control" name="price_limit_lower" id="numPriceLimitLower">
+            ~
+            <input type="number" class="form-control" name="price_limit_upper" id="numPriceLimitUpper">
+        </div>
+        <div class="form-group">
+            <label>在庫数</label>
+            <input type="number" class="form-control" name="stock_limit_lower" id="numStockLimitLower">
+            ~
+            <input type="number" class="form-control" name="stock_limit_upper" id="numStockLimitUpper">
+        </div>
         <button type="button" onclick="getFilteredProducts()">検索</button>
     </form>
     <button type="button" onclick="window.location.href='{{ route('addProduct') }}'">新規登録</button>

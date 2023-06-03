@@ -33,8 +33,12 @@ class ProductsController extends Controller
     static function getFilteredProducts() {
         $product_name_key = request()->get('product_name_key');
         $company_id = request()->get('company_id');
+        $price_limit_lower = request()->get('price_limit_lower');
+        $price_limit_upper = request()->get('price_limit_upper');
+        $stock_limit_lower = request()->get('stock_limit_lower');
+        $stock_limit_upper = request()->get('stock_limit_upper');
 
-        $products = Products::getProducts($product_name_key, $company_id);
+        $products = Products::getProducts($product_name_key, $company_id, $price_limit_lower, $price_limit_upper, $stock_limit_lower, $stock_limit_upper);
 
         return response()->json(['products' => $products]);
     }

@@ -15,12 +15,15 @@ class Products extends Model
         return $companies;
     }
 
-    public static function getProducts($product_name_key, $company_id) {
+    public static function getProducts($product_name_key, $company_id, $price_limit_lower, $price_limit_upper, $stock_limit_lower, $stock_limit_upper) {
         $query = DB::table('products');
 
         if($product_name_key != '') $query = $query->where('product_name', 'like', "%{$product_name_key}%");
         if($company_id != 'all')    $query = $query->where('company_id', $company_id);
-
+        if($price_limit_lower != '') $query = $query->where('price', '>=', $price_limit_lower);
+        if($price_limit_upper != '') $query = $query->where('price', '<=', $price_limit_upper);
+        if($stock_limit_lower != '') $query = $query->where('stock', '>=', $stock_limit_lower);
+        if($stock_limit_upper != '') $query = $query->where('stock', '<=', $stock_limit_upper);
 
         $products = $query
             ->leftJoin('companies', 'company_id', '=', 'companies.id')
