@@ -18,8 +18,8 @@ use App\Http\Controllers\ProductsController;
 Route::get('/', [ProductsController::class, 'showAllProducts']);
 
 Route::get('/products', [ProductsController::class, 'showProducts'])->name('products');
-Route::get('/products/filteredProducts', [ProductsController::class, 'getFilteredProducts'])->name('filteredProducts');
-Route::delete('/products', [ProductsController::class, 'deleteProduct'])->name('deleteProduct');
+Route::post('/products/filteredProducts', [ProductsController::class, 'getFilteredProducts'])->name('filteredProducts');
+Route::post('/products/deleteProduct', [ProductsController::class, 'deleteProduct'])->name('deleteProduct');
 
 Route::get('/newProdct', [App\Http\Controllers\AddProductController::class, 'showAddProduct'])->name('addProduct');
 Route::post('/newProdct', [App\Http\Controllers\AddProductController::class, 'registProduct'])->name('registProduct');

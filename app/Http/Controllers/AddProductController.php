@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Products;
 use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Facades\DB;
 
 class AddProductController extends Controller
 {

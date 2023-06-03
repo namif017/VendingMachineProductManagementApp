@@ -39,7 +39,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('/js/getFilteredProducts.js') }}"></script>
-    <script src="{{ asset('/js/sortAndShowProducts.js') }}"></script>
-    <script src="{{ asset('/js/checkDeleteProduct.js') }}"></script>
+    <script src="{{ asset('/js/Products.js') }}"></script>
 @endsection

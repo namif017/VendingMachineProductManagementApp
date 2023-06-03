@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Products;
+use Illuminate\Support\Facades\DB;
 
 class ProductsController extends Controller
 {
@@ -16,8 +16,8 @@ class ProductsController extends Controller
         return view('products', ['companies' => $companies]);
     }
 
-    public static function deleteProduct(Request $request) {
-        $id = $request->input('id');
+    public static function deleteProduct() {
+        $id = request()->get('id');
 
         try {
             Products::deleteProduct($id);
@@ -27,7 +27,7 @@ class ProductsController extends Controller
             return back();
         }
 
-        return redirect(route('products'));
+        return response()->json([]);
     }
 
     static function getFilteredProducts() {
